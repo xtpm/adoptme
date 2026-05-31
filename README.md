@@ -58,6 +58,35 @@ Run slash command registration locally whenever commands change:
 npm.cmd run deploy
 ```
 
+## Hosting On Render Free
+
+Render has a free web service tier. Free services can sleep when they stop receiving web traffic, so this repo includes a tiny health server that runs when Render provides a `PORT`.
+
+1. Go to [Render](https://render.com/).
+2. Create a new **Web Service** from the GitHub repo: `xtpm/adoptme`.
+3. Choose the free instance type.
+4. Use these settings:
+
+   ```text
+   Build Command: npm ci
+   Start Command: npm start
+   ```
+
+5. Add these environment variables:
+
+   ```env
+   DISCORD_TOKEN=your_bot_token_here
+   CLIENT_ID=your_application_client_id_here
+   GUILD_ID=your_discord_server_id_here
+   ```
+
+6. After Render deploys, open the generated `.onrender.com` URL once.
+7. To reduce sleeping, use a free uptime monitor to ping:
+
+   ```text
+   https://your-render-url.onrender.com/health
+   ```
+
 ## Commands
 
 - `/embed` posts a custom rich embed.

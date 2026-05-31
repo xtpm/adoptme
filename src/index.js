@@ -1,8 +1,10 @@
 import { Client, Events, GatewayIntentBits } from 'discord.js';
 import { commandMap } from './commands/index.js';
 import { config, validateConfig } from './config.js';
+import { startHealthServer } from './server.js';
 
 validateConfig();
+startHealthServer();
 
 const client = new Client({
   intents: [GatewayIntentBits.Guilds],
